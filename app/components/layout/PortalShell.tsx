@@ -8,7 +8,7 @@ import { PortalProvider } from "@/app/context/PortalContext";
 import { useIsClient } from "@/app/hooks/useIsClient";
 import { getToken } from "@/app/utils/auth";
 
-// Estrutura das telas logadas: protege a rota e monta menu + conteúdo
+// Estrutura das telas logadas -> protege a rota e monta menu + conteúdo
 export default function PortalShell({ children }: { children: ReactNode }) {
   const router = useRouter();
   const isClient = useIsClient();
