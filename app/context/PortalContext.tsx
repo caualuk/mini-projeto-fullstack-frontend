@@ -46,7 +46,7 @@ export function PortalProvider({ children }: { children: ReactNode }) {
     setFormOpen(true);
   }
 
-  // Chamado depois de salvar/excluir
+  // Chamado depois de salvar ou excluir uma solicitação
   function handleSaved(message: string) {
     refresh();
     showToast(message);

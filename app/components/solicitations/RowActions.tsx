@@ -49,7 +49,7 @@ export default function RowActions({ locked, onView, onEdit, onDelete }: Props) 
 
       {position && (
         <>
-          {/* Camada invisível: clicar fora ou rolar fecha o menu */}
+          {/* Fecha o menu ao clicar fora ou rolar a página */}
           <div className="fixed inset-0 z-30" onClick={() => setPosition(null)} onWheel={() => setPosition(null)} />
 
           <div

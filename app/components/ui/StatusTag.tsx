@@ -1,6 +1,6 @@
 import { STATUS_LABELS, type Status } from "@/app/utils/constants";
 
-// Cor de cada status
+// Cor dos status
 const STYLES: Record<Status, string> = {
   OPEN: "border border-violet-400 text-violet-300",
   IN_PROGRESS: "bg-violet-500/25 text-violet-200",

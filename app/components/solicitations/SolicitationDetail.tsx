@@ -11,14 +11,14 @@ import {
 import { CATEGORY_LABELS, STATUSES, STATUS_LABELS, type Status } from "@/app/utils/constants";
 import { formatDateTime } from "@/app/utils/format";
 
-// Painel que abre embaixo da solicitação, com os detalhes e ações
+// Painel que abre embaixo da solicitação, com os detalhes e ações, etc
 export default function SolicitationDetail({ item }: { item: Solicitation }) {
   const { openForm, askDelete, refresh, showToast } = usePortal();
 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-  // Só pode editar/excluir enquanto estiver Aberto (regra do back-end)
+  // Só pode editar/excluir enquanto estiver Aberto (regra implementada no backend)
   const editable = item.status === "OPEN";
 
   // Altera o status direto na API e recarrega a lista

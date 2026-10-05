@@ -41,7 +41,7 @@ export default function Solicitations() {
   const searchParams = useSearchParams();
   const { refreshKey, openForm, askDelete } = usePortal();
 
-  // Filtros (status/categoria podem vir da URL, ex.: clique no dashboard)
+  // Filtros (status/categoria podem vir da URL)
   const [search, setSearch] = useState("");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<Category | "">((searchParams.get("category") as Category) ?? "");
@@ -80,7 +80,7 @@ export default function Solicitations() {
       try {
         const result = await getSolicitations({ title, category, status, startDate, endDate, sort, page });
 
-        // Se a página ficou vazia (ex.: após excluir o último item), volta uma
+        // Se a página ficar vazia após excluir o último item, volta uma página
         if (result.content.length === 0 && page > 0) {
           setPage(page - 1);
           return;
@@ -113,7 +113,7 @@ export default function Solicitations() {
     setPage(0);
   }
 
-  // Filtros ativos exibidos como "chips" removíveis
+  // Filtros ativos exibidos como cards/chips removíveis
   const chips = [
     title && { label: `"${title}"`, clear: () => setSearch("") },
     category && { label: CATEGORY_LABELS[category], clear: () => changeFilter(setCategory, "") },
