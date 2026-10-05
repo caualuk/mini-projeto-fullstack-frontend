@@ -1,5 +1,10 @@
-// Valores aceitos pelo back-end (enums do Java)
-export type Category = "IT" | "HR" | "PROCUREMENT" | "FINANCE" | "INFRASTRUCTURE";
+// Valores aceitos pelo backend (enums do Java)
+export type Category =
+  | "IT"
+  | "HR"
+  | "PROCUREMENT"
+  | "FINANCE"
+  | "INFRASTRUCTURE";
 export type Status = "OPEN" | "IN_PROGRESS" | "COMPLETED";
 
 // Rótulos em português para as categorias

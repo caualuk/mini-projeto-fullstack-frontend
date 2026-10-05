@@ -1,10 +1,14 @@
 import { clearToken, getToken } from "@/app/utils/auth";
 
 // URL base da API (definida no .env.local; usa a porta padrão do Spring se não houver)
-export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
 // Função única para chamar a API autenticada
-export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
+export async function apiFetch<T>(
+  path: string,
+  options: RequestInit = {},
+): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers: {
@@ -21,13 +25,13 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
     throw new Error("Sessão expirada. Faça login novamente.");
   }
 
-  // O back-end devolve a mensagem de erro como texto puro
+  // O backend devolve a mensagem de erro como texto puro
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || "Ocorreu um erro inesperado.");
   }
 
-  // Respostas sem corpo (ex.: 204 do DELETE)
+  // Respostas sem corpo (204 No Content) retornam undefined
   if (response.status === 204) {
     return undefined as T;
   }

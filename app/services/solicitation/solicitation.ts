@@ -1,7 +1,7 @@
 import { apiFetch } from "@/app/services/api";
 import type { Category, Status } from "@/app/utils/constants";
 
-// Solicitação como vem do back-end
+// Solicitação como vem do backend
 export interface Solicitation {
   id: string;
   title: string;
@@ -40,14 +40,17 @@ export interface Page<T> {
 }
 
 // Lista as solicitações com filtros e paginação
-export function getSolicitations(filters: SolicitationFilters = {}): Promise<Page<Solicitation>> {
+export function getSolicitations(
+  filters: SolicitationFilters = {},
+): Promise<Page<Solicitation>> {
   const params = new URLSearchParams();
 
   if (filters.title) params.set("title", filters.title);
   if (filters.category) params.set("category", filters.category);
   if (filters.status) params.set("status", filters.status);
-  // O back-end espera LocalDateTime: início e fim do dia
-  if (filters.startDate) params.set("startDate", `${filters.startDate}T00:00:00`);
+  // O backend espera LocalDateTime: início e fim do dia
+  if (filters.startDate)
+    params.set("startDate", `${filters.startDate}T00:00:00`);
   if (filters.endDate) params.set("endDate", `${filters.endDate}T23:59:59`);
 
   params.set("page", String(filters.page ?? 0));
@@ -58,18 +61,34 @@ export function getSolicitations(filters: SolicitationFilters = {}): Promise<Pag
 }
 
 // Cria uma nova solicitação
-export function createSolicitation(data: SolicitationInput): Promise<Solicitation> {
-  return apiFetch("/v1/requests", { method: "POST", body: JSON.stringify(data) });
+export function createSolicitation(
+  data: SolicitationInput,
+): Promise<Solicitation> {
+  return apiFetch("/v1/requests", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
 }
 
 // Edita uma solicitação (somente status Aberto)
-export function updateSolicitation(id: string, data: SolicitationInput): Promise<Solicitation> {
-  return apiFetch(`/v1/requests/${id}`, { method: "PUT", body: JSON.stringify(data) });
+export function updateSolicitation(
+  id: string,
+  data: SolicitationInput,
+): Promise<Solicitation> {
+  return apiFetch(`/v1/requests/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
 }
 
 // Altera o status de uma solicitação
-export function updateSolicitationStatus(id: string, status: Status): Promise<Solicitation> {
-  return apiFetch(`/v1/requests/${id}/status?status=${status}`, { method: "PATCH" });
+export function updateSolicitationStatus(
+  id: string,
+  status: Status,
+): Promise<Solicitation> {
+  return apiFetch(`/v1/requests/${id}/status?status=${status}`, {
+    method: "PATCH",
+  });
 }
 
 // Exclui uma solicitação (somente status Aberto)

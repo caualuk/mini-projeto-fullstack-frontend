@@ -14,7 +14,7 @@ export async function register(data: RegisterRequest): Promise<void> {
     body: JSON.stringify(data),
   });
 
-  // Repassa a mensagem do back-end (ex.: usuário já cadastrado)
+  // Repassa a mensagem do backend 
   if (!response.ok) {
     const message = await response.text();
     throw new Error(message || "Não foi possível registrar o usuário.");
